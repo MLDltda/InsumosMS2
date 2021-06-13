@@ -7,7 +7,7 @@ class Persistencia : public Controler
 {
     public:
         Persistencia();
-        std::vector<Insumo*> lerInsumos(std::string nomeLocal);
+        Insumo* lerInsumos(std::string nomeLocal);
         void salvarInsumos(std::vector<Insumo*>insumos, std::string nomeLocal);
         virtual ~Persistencia();
 

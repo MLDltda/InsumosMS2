@@ -52,6 +52,7 @@ Insumo* Persistencia::lerInsumos(string nomeLocal){
                     getline(fp, type);
                     getline(fp, descricao);
                     ins = new EPI(tipo, nome, quant, val, ven, nFab, type, descricao);
+                    break;
             }
 
         }

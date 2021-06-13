@@ -27,6 +27,7 @@ void Local::getInsumo(){
     if(insumo.size() == 0){
         std::cout<<"Nao existem dados salvos"<<std::endl;
     }else{
+        std::cout<<insumo.size()<<std::endl;
         for(unsigned int i = 0; i < insumo.size(); i++){
         insumo[i]->exibeDados();
     }

@@ -21,7 +21,7 @@ class Controler : public Local
         void setDadosMedicamento(std::string name);
         void setDadosEPI(std::string name);
         int checkCadastro(std::string name);
-        void salvarDados();
+        void insumoDados();
         virtual ~Controler();
 
     protected:

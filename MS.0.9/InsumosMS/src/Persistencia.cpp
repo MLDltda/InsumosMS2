@@ -2,6 +2,8 @@
 #include "Vacina.h"
 #include "Medicamento.h"
 #include "EPI.h"
+#include "Local.h"
+#include "Insumo.h"
 
 using namespace std;
 
@@ -10,47 +12,58 @@ Persistencia::Persistencia()
     //ctor
 }
 
-vector<Insumo*> Persistencia::lerInsumos(string nomeLocal){
-    vector<Insumo*> vet;
+
+Insumo* Persistencia::lerInsumos(string nomeLocal){
     ifstream fp;
     string nome,ven,nFab;
     int quant,tipo;
     float val;
+    std::string type;
+    int quantDoses, intervalo;
+    std::string dosagem, administracao, disponibilizacao;
+    std::string descricao;
+
+    cout<<"Abrindo o arquivo "<<nomeLocal<<endl;
 
     Insumo *ins;
     fp.open(nomeLocal+".txt", fstream::in);
 
     if (fp.is_open()) {
-        while (1) {
+            /*if (fp.eof() || fp.bad())
+                break;*/
+            fp >> tipo;
             getline(fp, nome);
-
-            if (fp.eof() || fp.bad())
-                break;
-
+            cout<<nome<<endl;
             fp >> quant;
             fp >> val;
             getline(fp, ven);
             getline(fp, nFab);
-            fp >> tipo;
             fp.ignore();
             switch (tipo) {
                 case 1:
-                    ins = new Vacina(tipo, nome, quant, val, ven, nFab);
+                    getline(fp, type);
+                    fp >> quantDoses;
+                    fp >> intervalo;
+                    ins = new Vacina(tipo, nome, quant, val, ven, nFab, type, quantDoses, intervalo);
                     break;
                 case 2:
-                    ins = new Medicamento(tipo, nome, quant, val, ven, nFab);
+                    getline(fp, dosagem);
+                    getline(fp, administracao);
+                    getline(fp, disponibilizacao);
+                    ins = new Medicamento(tipo, nome, quant, val, ven, nFab, dosagem, administracao, disponibilizacao);
                     break;
                 case 3:
-                    ins = new EPI(tipo, nome, quant, val, ven, nFab);
+                    getline(fp, type);
+                    getline(fp, descricao);
+                    ins = new EPI(tipo, nome, quant, val, ven, nFab, type, descricao);
+                    break;
             }
-            ins->lerAtributos(fp);
-            fp.ignore();
-            vet.push_back(ins);
+
         }
         fp.close();
-    }
 
-    return vet;
+
+    return ins;
 }
 
 

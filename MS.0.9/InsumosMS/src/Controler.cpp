@@ -47,7 +47,6 @@ void Controler::cadastraInsumosMS(){
     while(1){
     std::cout<<"Escolha o Tipo de Insumo a ser cadastrado:\n1.Vacina.\n2.Medicamento.\n3.EPI.\n4.voltar."<<std::endl;
     std::cin>>tipo;
-    getchar();
 
     switch(tipo){
 case 1:
@@ -353,20 +352,20 @@ void Controler::distribuiInsumo(int escolha){
 void Controler::carregarDados(){
     Persistencia pers;
     for(int i = 0; i < 28; i++){
-        pers.lerInsumos(locais[i].getNomeLocal());
+        auto vet = pers.lerInsumos(locais[i].getNomeLocal());
+        locais[i].setInsumo(vet);
     }
     std::cout << "Dados lidos com sucesso!\n";
     std::cout << "Aperte enter para continuar." << std::endl;
     getchar();
-    getchar();
 }
 
-void Controler::salvarDados(){
+void Controler::insumoDados(){
     Persistencia pers;
     for(int i = 0; i < 28; i++){
-        pers.salvarInsumos(locais[i].RetornaInsumo(), locais[i].getNomeLocal());
+        pers.salvarInsumos(locais[i].RetornaInsumo(),locais[i].getNomeLocal());
     }
-    std::cout << "Dados salvos com sucesso!\n";
+    std::cout << "Dados lidos com sucesso!\n";
     std::cout << "Aperte enter para continuar." << std::endl;
     getchar();
     getchar();

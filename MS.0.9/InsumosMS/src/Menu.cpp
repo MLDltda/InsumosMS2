@@ -12,6 +12,9 @@ Menu::Menu()
 void Menu::exibeMenu1(){
     int escolha;
     Controler control;
+    /*cout<<"Carregando dados salvos..."<<endl;
+    control.carregarDados();
+    system("CLS");*/
     while(1){
     cout<<"MENU:"<<endl;
     cout<<"1.Cadastro de Insumos."<<endl;
@@ -183,7 +186,8 @@ case 5:
     system("CLS");
     break;
 case 6:
-    exibeMenu2();
+    cout<<"Salvando Dados......"<<endl;
+    control.insumoDados();
     system("CLS");
     break;
 case 7:
@@ -194,13 +198,6 @@ default:
     break;
     }
     }
-}
-
-void Menu::exibeMenu2(){
-    Controler control2;
-    cout<<"Salvando Dados......"<<endl;
-    control2.salvarDados();
-    return;
 }
 
 Menu::~Menu()

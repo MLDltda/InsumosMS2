@@ -30,12 +30,13 @@ class Local : public Insumo
         std::vector<Insumo*> RetornaInsumo();
         virtual ~Local();
 
+
     protected:
+        std::vector<Insumo*> insumo;
 
     private:
         std::string nomeLocal;
         int tipo;
-        std::vector<Insumo*> insumo;
 };
 
 #endif // LOCAL_H
